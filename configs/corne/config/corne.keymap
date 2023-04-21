@@ -1,0 +1,100 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/bt.h>
+
+// dt-formatter: indent = "  "
+// dt-formatter: reindentMultilineIntegerCells = "dedent"
+
+/ {
+  // behaviors {
+  //   hm: homerow_mods {
+  //     compatible = "zmk,behavior-hold-tap";
+  //     label = "HOMEROW_MODS";
+  //     #binding-cells = <2>;
+  //     tapping-term-ms = <200>;
+  //     quick-tap-ms = <0>;
+  //     flavor = "tap-preferred";
+  //     bindings =
+  //       <&kp>,
+  //       <&kp>;
+  //   };
+  // };
+
+  combos {
+    compatible = "zmk,combos";
+
+    caps {
+      bindings = <&kp CAPS>;
+      key-positions = <12 13>;
+    };
+
+    del_word {
+      bindings = <&kp LA(BACKSPACE)>;
+      key-positions = <23 22>;
+    };
+
+    hyper {
+      bindings = <&sk LS(LA(LC(LEFT_GUI)))>;
+      key-positions = <12 24>;
+    };
+
+    meh {
+      bindings = <&sk LC(LA(LEFT_SHIFT))>;
+      key-positions = <23 35>;
+    };
+  };
+
+  macros {
+  };
+
+  keymap {
+    compatible = "zmk,keymap";
+
+    base {
+      label = " Base Layer";
+      bindings = <
+ &mt LEFT_GUI ESC  &kp Q  &kp W            &kp E            &kp R        &kp T          &kp Y                  &kp U      &kp I    &kp O     &kp P   &mt RIGHT_GUI LEFT_BRACKET
+    &mt LCTRL TAB  &kp A  &kp S            &kp D            &kp F        &kp G          &kp H                  &kp J      &kp K    &kp L  &kp SEMI               &mt RCTRL APOS
+&mt LEFT_ALT BSLH  &kp Z  &kp X            &kp C            &kp V        &kp B          &kp N                  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &mt RIGHT_ALT RIGHT_BRACKET
+                                 &lt 1 BACKSPACE  &mt LSHFT SPACE  &lt 2 ENTER    &lt 2 ENTER  &mt RIGHT_SHIFT SPACE  &lt 1 DEL
+      >;
+    };
+
+    nums {
+      label = " Nums and Fs";
+      bindings = <
+&kp TILDE  &kp LC(NUMBER_1)  &kp LC(NUMBER_2)  &kp LC(NUMBER_3)  &kp LC(NUMBER_4)  &kp LG(LA(N))    &kp LG(LS(N))  &kp NON_US_BACKSLASH  &kp NON_US_HASH              &kp PIPE                &kp DOT  &kp GRAVE
+ &kp PLUS          &kp EXCL            &kp AT          &kp HASH        &kp DOLLAR    &kp PERCENT        &kp CARET         &kp AMPERSAND     &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDER
+&kp EQUAL      &kp NUMBER_1            &kp N2            &kp N3            &kp N4         &kp N5           &kp N6                &kp N7           &kp N8                &kp N9                 &kp N0  &kp MINUS
+                                                         &trans            &trans    &lt 3 ENTER      &lt 3 ENTER                &trans           &trans
+      >;
+    };
+
+    navi {
+      label = " Nav and KP";
+      bindings = <
+    &kp LCMD    &kp KP_DIVIDE  &kp KP_N7        &kp KP_N8  &kp KP_N9  &kp KP_MINUS      &kp K_MUTE   &kp RG(LEFT)              &kp UP  &kp PG_UP        &kp C_PREV  &kp RIGHT_GUI
+   &kp LCTRL  &kp KP_MULTIPLY  &kp KP_N4        &kp KP_N5  &kp KP_N6   &kp KP_PLUS    &kp C_VOL_UP       &kp LEFT            &kp DOWN  &kp RIGHT  &kp C_PLAY_PAUSE      &kp RCTRL
+&kp LEFT_ALT        &kp KP_N0  &kp KP_N1        &kp KP_N2  &kp KP_N3  &kp KP_COMMA    &kp C_VOL_DN  &kp RG(RIGHT)  &kp LG(LC(LS(N4)))  &kp PG_DN        &kp C_NEXT       &kp RALT
+                                          &lt 3 BACKSPACE     &trans        &trans          &trans         &trans           &lt 3 DEL
+      >;
+    };
+
+    tiling {
+      label = " Tiling and BT";
+      bindings = <
+&out OUT_TOG  &trans  &trans         &trans         &trans  &bt BT_SEL 0    &bt BT_SEL 2  &kp LC(LA(LG(LEFT)))      &kp LA(LC(ENTER))  &kp LC(LA(LG(RIGHT)))  &kp LG(EQUAL)  &out OUT_TOG
+      &trans  &trans  &trans         &trans  &kp LG(LC(F))  &bt BT_SEL 1    &bt BT_SEL 3      &kp LC(LA(LEFT))  &kp LC(LA(BACKSPACE))      &kp LA(LC(RIGHT))  &kp LG(MINUS)        &trans
+      &trans  &trans  &trans  &kp LC(GRAVE)         &trans    &bt BT_CLR      &bt BT_CLR                &trans          &kp LC(LA(C))                 &trans         &trans        &trans
+                                     &trans         &trans        &trans          &trans                &trans                 &trans
+      >;
+    };
+  };
+};

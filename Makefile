@@ -1,5 +1,5 @@
 init:
-	west init app/
+	west init -l app/
 update:
 	cd app; west update; cd -
 jorne_vu_keys:
@@ -18,3 +18,9 @@ dactyl_vu_keys:
 	cp -f build/dactyl_vu_keys/left/zephyr/zmk.uf2 ./dactyl_vu_keys_left.uf2
 	west build -p -s ./app -d build/dactyl_vu_keys/right -b nrfmicro_13 -- -DSHIELD=manuform_right -DZMK_CONFIG="/workspaces/zmk/configs/dactyl/config"
 	cp -f build/dactyl_vu_keys/right/zephyr/zmk.uf2 ./dactyl_vu_keys_right.uf2
+
+corne_lp:
+	west build -p -s ./app -d build/corne/left -b nrfmicro_13 -- -DSHIELD=corne_left -DZMK_CONFIG="/workspaces/zmk/zmk/configs/corne/config"
+	cp -f build/corne/left/zephyr/zmk.uf2 ./corne_left.uf2
+	west build -p -s ./app -d build/corne/right -b nrfmicro_13 -- -DSHIELD=corne_right -DZMK_CONFIG="/workspaces/zmk/configs/corne/config"
+	cp -f build/corne/right/zephyr/zmk.uf2 ./corne_right.uf2
