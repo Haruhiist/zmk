@@ -24,3 +24,9 @@ corne_lp:
 	cp -f build/corne/left/zephyr/zmk.uf2 ./corne_left.uf2
 	west build -p -s ./app -d build/corne/right -b nrfmicro_13 -- -DSHIELD=corne_right -DZMK_CONFIG="/workspaces/zmk/configs/corne/config"
 	cp -f build/corne/right/zephyr/zmk.uf2 ./corne_right.uf2
+
+sofle_nrf:
+	west build -p -s ./app -d build/sofle_nrf/left -b nrfmicro_13 -- -DSHIELD=sofle_left -DZMK_CONFIG="/workspaces/zmk/configs/zmk-config-sofle-nrf/config"
+	cp -f build/corne/left/zephyr/zmk.uf2 ./sofle_nrf_left.uf2
+	west build -p -s ./app -d build/sofle_nrf/right -b nrfmicro_13 -- -DSHIELD=sofle_right -DZMK_CONFIG="/workspaces/zmk/configs/zmk-config-sofle-nrf/config"
+	cp -f build/corne/right/zephyr/zmk.uf2 ./sofle_nrf_right.uf2
