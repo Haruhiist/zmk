@@ -36,3 +36,7 @@ sofle_nrf:
 	cp -f build/sofle_nrf/left/zephyr/zmk.uf2 ./sofle_nrf_left.uf2
 	west build -p -s ./app -d build/sofle_nrf/right -b nrfmicro_13 -- -DSHIELD=sofle_right -DZMK_CONFIG="/workspaces/zmk/configs/zmk-config-sofle-nrf/config"
 	cp -f build/sofle_nrf/right/zephyr/zmk.uf2 ./sofle_nrf_right.uf2
+
+tg4x_nrf:
+	west build -p -s ./app -d build/tg4x_nrf -b nrfmicro_13 -- -DSHIELD=tg4x -DZMK_CONFIG="/workspaces/zmk/configs/zmk-config-tg4x/config"
+	cp -f build/tg4x_nrf/zephyr/zmk.uf2 ./tg4x.uf2
